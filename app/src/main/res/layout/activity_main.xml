@@ -11,10 +11,10 @@
 
     <ImageView
         android:id="@+id/memeImage"
-        android:layout_height="350dp"
         android:layout_width="match_parent"
-        android:scaleType="centerCrop"
-        />
+        android:layout_height="370dp"
+        android:scaleType="fitCenter"
+    />
 
     <TextView
         android:id="@+id/memeAuthor"

@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bumptech.glide.Glide
 import com.example.randommemes.databinding.ActivityMainBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             insets
         }
         getData()
+
+        binding.btnNewMeme.setOnClickListener {
+            getData()
+        }
     }
 
     private fun getData() {
@@ -41,6 +46,11 @@ class MainActivity : AppCompatActivity() {
                 call: Call<responseDataclass?>,
                 response: Response<responseDataclass?>
             ) {
+
+                binding.memeAuthor.text  = response.body()?.author
+                binding.memeTitle.text = response.body()?.title
+                Glide.with(this@MainActivity).load(response.body()?.url).into(binding.memeImage);
+
                 progressDialog.dismiss()
             }
 
