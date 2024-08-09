@@ -5,15 +5,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
 
-    //lazy meaning that it is not initialized until it is accessed for the first time
+    // Lazy initialization of Retrofit instance. It's created when accessed for the first time
     private val retrofit by lazy {
-        Retrofit.Builder().baseUrl("https://meme-api.com/")
-            .addConverterFactory(GsonConverterFactory.create())
+        Retrofit.Builder()
+            .baseUrl("https://meme-api.com/")  // Base URL for the API
+            .addConverterFactory(GsonConverterFactory.create()) // Convert JSON data to Kotlin objects using Gson
             .build()
     }
 
-    val apiInterface by lazy{
+    // Lazy initialization of the ApiInterface
+    val apiInterface by lazy {
         retrofit.create(ApiInterface::class.java)
     }
-
 }
